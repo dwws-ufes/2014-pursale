@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Cadastrar Produto</ui:define>
+	
+	<ui:define name="contents">
+		<h:form class="new_user_form">
+		    <p:panel header="Cadastrar Novo Produto">
+		 
+		        <h:panelGrid id="grid" columns="3" cellpadding="5">
+		        
+		            <h:outputLabel for="nome" value="Nome:" style="font-weight:bold"/>                    
+		            <p:inputText id="nome" value="#{addProduto.produto.nome}" required="true" label="Nome" requiredMessage="Informe o nome completo do produto"/>
+		            <p:message for="nome" />
+		 			
+		 			<h:outputLabel for="preco" value="Preço:" style="font-weight:bold"/>                    
+		            <p:inputText id="preco" value="#{addProduto.produto.preco}" required="true" label="preco" requiredMessage="Informe o preço do produto"/>
+		            <p:message for="preco" />
+		            
+		            <h:outputLabel for="titulo" value="Título:" style="font-weight:bold"/>                    
+		            <p:inputText id="titulo" value="#{addProduto.produto.titulo}" required="true" label="titulo" maxlength="50" requiredMessage="Informar o título do produto (max 50 dígitos)"/>
+		            <p:message for="titulo" />
+		 			
+		 			<h:outputLabel for="descricao" value="Descrição:" style="font-weight:bold"/>                    
+		            <p:inputText id="descricao" value="#{addProduto.produto.descricao}" required="true" label="descricao" requiredMessage="Informe uma descrição para o produto"/>
+		            <p:message for="descricao" />
+		            
+		            <h:outputLabel for="quantidade" value="Quantidade:" style="font-weight:bold"/>                    
+		            <p:inputText id="quantidade" value="#{addProduto.produto.quantidade}" required="true" label="quantidade" requiredMessage="Informe a quantidade disponível em estoque"/>
+		            <p:message for="quantidade" />
+		 			
+		 			<h:outputLabel for="imagemUri" value="Imagem (URI):" style="font-weight:bold"/>                    
+		            <p:inputText id="imagemUri" value="#{addProduto.produto.imagemUri}" label="imagemUri" />
+		            <p:message for="imagemUri" />
+		            	            
+		        </h:panelGrid>
+		 
+		        <p:commandButton value="Cadastrar" action="#{addProduto.save}" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
+		        
+		    </p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

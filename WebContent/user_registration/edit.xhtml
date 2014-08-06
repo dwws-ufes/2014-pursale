@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="style">
+		<style>
+			.wrapper{
+				height: 100%;
+			}
+		</style>
+	</ui:define>
+               
+	<ui:define name="title">Cadastrar</ui:define>
+	
+	<ui:define name="contents">
+		<h:form class="new_user_form">
+		    <p:panel header="Editar Cadastro">
+		 
+		        <h:panelGrid id="grid" columns="3" cellpadding="5">
+		        
+		            <h:outputLabel for="nome" value="Nome:" style="font-weight:bold"/>                    
+		            <p:inputText id="nome" value="#{editUsuario.usuario.nome}" required="true" label="Nome" requiredMessage="É obrigatório informar o nome completo do usuário"/>
+		            <p:message for="nome" />
+		 			
+		 			<h:outputLabel for="data_nascimento" value="Data de Nascimento:" style="font-weight:bold"/>                 
+		            <p:inputText id="data_nascimento" value="#{editUsuario.usuario.data_nascimento}" required="true" label="Data de Nascimento" requiredMessage="É obrigatório informar a data de nascimento">
+		                <f:convertDateTime pattern="dd/MM/yyyy" />
+		            </p:inputText>
+		            <p:message for="data_nascimento" />
+		 			
+		 			<h:outputLabel for="cpf" value="CPF:" style="font-weight:bold"/>                    
+		            <p:inputText id="cpf" value="#{editUsuario.usuario.cpf}" required="true" label="cpf" requiredMessage="É obrigatório informar o número do CPF"/>
+		            <p:message for="cpf" />
+		            
+		            <h:outputLabel for="rg" value="RG:" style="font-weight:bold"/>                    
+		            <p:inputText id="rg" value="#{editUsuario.usuario.identidade}" required="true" label="rg" requiredMessage="É obrigatório informar o número do RG"/>
+		            <p:message for="rg" />
+		 			
+		 			<h:outputLabel for="email" value="Email:" style="font-weight:bold"/>                    
+		            <p:inputText id="email" value="#{editUsuario.usuario.email}" required="true" label="email" maxlength="50" requiredMessage="É obrigatório informar o endereço de e-mail (max 50 dígitos)"/>
+		            <p:message for="email" />
+		 			
+		 			<h:outputLabel for="endereco" value="Endereço:" style="font-weight:bold"/>                    
+		            <p:inputText id="endereco" value="#{editUsuario.usuario.endereco}" required="true" label="endereco" requiredMessage="É obrigatório informar o endereço"/>
+		            <p:message for="endereco" />
+		            
+		            <h:outputLabel for="complemento" value="Complemento:" style="font-weight:bold"/>                    
+		            <p:inputText id="complemento" value="#{editUsuario.usuario.complemento}" label="complemento"/>
+		            <p:message for="complemento" />
+		            
+		            <h:outputLabel for="bairro" value="Bairro:" style="font-weight:bold"/>                    
+		            <p:inputText id="bairro" value="#{editUsuario.usuario.bairro}" required="true" label="bairro" requiredMessage="É obrigatório informar o bairro que reside"/>
+		            <p:message for="bairro" />
+		            
+		            <h:outputLabel for="cidade" value="Cidade:" style="font-weight:bold"/>                    
+		            <p:autoComplete minQueryLength="3" maxResults="10" completeMethod="#{autoComplete.completeText}" id="cidade" value="#{editUsuario.usuario.cidade}" required="true" label="cidade" requiredMessage="É obrigatório informar a cidade que reside"/>
+		            <p:message for="cidade" />
+		            
+		            <h:outputLabel for="uf" value="UF:" style="font-weight:bold"/>                    
+		            <p:autoComplete minQueryLength="3" maxResults="10" completeMethod="#{autoComplete.completeText}" id="uf" value="#{editUsuario.usuario.uf}" required="true" label="uf" requiredMessage="É obrigatório informar o estado que reside"/>
+		            <p:message for="uf" />
+		            
+		            <h:outputLabel for="cep" value="CEP:" style="font-weight:bold"/>                    
+		            <p:inputText id="cep" value="#{editUsuario.usuario.cep}" required="true" label="cep" requiredMessage="É obrigatório informar o número do CEP"/>
+		            <p:message for="cep" />
+		            
+		            <h:outputLabel for="login" value="Login:" style="font-weight:bold"/>                    
+		            <p:inputText id="login" value="#{editUsuario.usuario.login}" required="true" label="login" maxlength="12" requiredMessage="É obrigatório informar um login (max 12 dígitos)"/>
+		            <p:message for="login" />
+		 			
+		 			<h:outputLabel for="pwd1" value="Senha:" style="font-weight:bold"/>
+			        <p:password id="pwd1" value="#{editUsuario.usuario.senha}" match="pwd2" label="Password 1" required="true" feedback="true" requiredMessage="É obrigatório informar uma senha"/>
+			 		<p:message for="pwd1" />
+			 		
+			        <h:outputLabel for="pwd2" value="Repita a Senha:" style="font-weight:bold"/>
+			        <p:password id="pwd2" value="#{editUsuario.usuario.senha}" label="Password 2" required="true" requiredMessage="Repita a senha"/>
+			        <p:message for="pwd2" />
+		            
+		        </h:panelGrid>
+		 
+		        <p:commandButton value="Salvar" action="#{editUsuario.save}" ajax="false" icon="ui-icon-check" validateClient="true" style="margin-right:10px"/>
+		    </p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">#{pedidoList.tipo eq 0? 'Minhas Compras' : 'Minhas Vendas'}</ui:define>
+	
+	<ui:define name="contents">
+		
+		<h:form>
+			<p:dataList id="ativos" value="#{pedidoList.pedidos}" emptyMessage="Você não possui #{pedidoList.tipo eq 0? 'compras' : 'vendas'} aguardando qualificação" var="pedido" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" style="margin-top:20px">
+		        <f:facet name="header">
+		        	#{pedidoList.tipo eq 0? 'Minhas Compras' : 'Minhas Vendas'}  - Aguardando Qualificação
+		        </f:facet>
+		       
+			    <p:link outcome="/pedidos/view" class="produto_item_lista #{pedidoList.returnClassQualificacao(pedido.status)}" value="#{pedido.produto.titulo}" style="display:inline-block; text-decoration: none">
+				    <f:param name="id" value="#{pedido.id}" />
+				    <f:param name="tipo" value="#{pedidoList.tipo}" />
+				</p:link>
+			    
+			    <p:button outcome="/reputacao/new" class="icon_small" icon="ui-icon-star" title="Icon Only">
+				    <f:param name="id" value="#{pedido.id}" />
+				    <f:param name="tipo" value="#{pedidoList.tipo}" />
+				</p:button>
+		
+	    	</p:dataList>
+	    	
+	    	<p:dataList id="finalizados" emptyMessage="Você não qualificou nenhuma #{pedidoList.tipo eq 0? 'compra' : 'venda'} até o momento" value="#{pedidoList.pedidosFinalizados}" var="pedido" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" style="margin-top:40px">
+		        <f:facet name="header">
+		        	#{pedidoList.tipo eq 0? 'Minhas Compras' : 'Minhas Vendas'} - Qualificadas
+		        </f:facet>
+		       
+			    <p:link outcome="/pedidos/view" class="produto_item_lista #{pedidoList.returnClassQualificacao(pedido.status)}" value="#{pedido.produto.titulo}" style="display:inline-block; text-decoration: none">
+				    <f:param name="id" value="#{pedido.id}" />
+				    <f:param name="tipo" value="#{pedidoList.tipo}" />
+				</p:link>
+			    
+	    	</p:dataList>
+    	</h:form>
+    			
+	</ui:define>
+</ui:composition>

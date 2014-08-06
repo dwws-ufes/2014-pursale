@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Resultado da Pesquisa</ui:define>
+	
+	<ui:define name="contents">
+		<h:form>
+			<p:dataList value="#{productQuery.produtos}" emptyMessage="Nenhum resultado encontrado para: '#{productQuery.produtoQuery}'" var="produto" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+		        <f:facet name="header">
+		            Resultado da busca
+		        </f:facet>
+		       
+			    <p:link outcome="/product/view" class="produto_item_lista" value="#{produto.titulo}" style="display:inline-block; text-decoration: none">
+				    <f:param name="id" value="#{produto.id}" />
+				</p:link>
+			    
+	    	</p:dataList>
+    	</h:form>
+		
+	</ui:define>
+</ui:composition>

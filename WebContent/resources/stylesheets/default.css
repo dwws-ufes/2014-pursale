@@ -1,0 +1,136 @@
+@CHARSET "ISO-8859-1";
+
+body{
+    background: rgb(196, 196, 196);
+}
+
+html{
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+.produto_item_lista:hover{
+	background-color:rgb(219, 227, 255);
+	
+}
+
+.icon_small{
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+.wrapper{
+    width: 960px;
+    margin: 0 auto;
+    background: rgb(235, 235, 235);
+    border-radius: 10px;
+    padding: 10px;
+    height: 600px;
+}
+
+.menu{
+	width:inherit;
+}
+
+.contents{
+	width:inherit;
+}
+
+p.title{
+    width: inherit;
+    text-align: center;
+    font-size: 28px;
+    margin: 15px 0 5px 0;
+    
+    background: #c4c4c4 url("/Pursale/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png.faces?ln=primefaces-aristo") top repeat-x;
+	background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+	background: #c4c4c4 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+	background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	
+	border: 1px solid #a8a8a8;
+	color: #4f4f4f;
+}
+
+
+.login_left{
+	width: 320px;
+	float: left;
+    margin: 10px 0 0 0;
+    height: 200px;
+}
+
+.login_left td{
+    padding: 0 12px 12px 0;
+}
+
+.login_left .ui-panel.ui-widget.ui-widget-content.ui-corner-all{
+	height: 200px;
+}
+
+.info_right{
+	width: 630px;
+	margin: 10px 0 0 10px;
+	float: left;
+	height: 200px;
+}
+
+
+.info_right .ui-panel.ui-widget.ui-widget-content.ui-corner-all{
+	height: 200px;
+}
+
+
+.new_user_form{
+	margin: 15px 0 0 0
+}
+
+.paginated{
+	margin-top:20px;
+}
+
+.new_user_form .ui-inputfield{
+	margin: 0 0 15px 10px;
+}
+
+.produto_ativado{
+	color: black;
+	text-decoration: none;
+	display:inline-block;
+}
+
+.produto_desativado{
+	color: red;
+	text-decoration: none;
+	display:inline-block;
+}
+
+.qualificado{
+	color: black;
+	text-decoration: none;
+	display:inline-block;
+}
+
+.aguardando_qualificacao{
+	color: red !important;
+	text-decoration: none;
+	display:inline-block;
+}
+
+.avaliacao_negativa{
+	color: red !important;
+}
+
+.avaliacao_neutra{
+	color: blue !important;
+}
+
+.avaliacao_positiva{
+	color: green !important;
+}

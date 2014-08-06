@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Welcome</ui:define>
+	
+	<ui:define name="p_title">PurSale</ui:define>
+	
+	<ui:define name="contents">
+		<div class="login_left">
+			<h:form>
+			    <p:panel header="Faça seu login">
+			        <p:messages />
+			 
+			        <h:panelGrid columns="3" cellpadding="5" >
+			            <h:outputLabel for="login" value="Login" />
+			            <p:inputText id="login" value="#{loginUsuario.usuario.login}" label="login"/>
+			            <p:message for="login" />
+			 
+			            <h:outputLabel for="senha" value="Senha" />
+			            <p:password id="senha" value="#{loginUsuario.usuario.senha}" label="senha"/>
+			            <p:message for="senha" />
+			 
+			        </h:panelGrid>
+			 
+			        <p:commandButton value="Entrar" ajax="false" icon="ui-icon-check" validateClient="true" action="#{loginUsuario.find}"/>
+			    </p:panel>
+			</h:form>
+		</div>
+		
+		<div class="info_right">
+			<h:form>
+			    <p:growl id="msgs" showDetail="true" />
+			 
+			    <p:panel id="basic" header="Cadastre-se" style="margin-bottom:20px">
+			            <h:outputText value="Ainda não possui cadastro?" />
+			            <br/><br/>
+			            <h:outputText value="Cadestre-se agora mesmo na Pursale e aproveite todos os benefícios!" />
+			            <br/><br/>
+			            <span><p:commandButton value="Cadastrar" id="nonAjax" action="user_registration/index.faces" ajax="false" /></span>
+			    </p:panel>    
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

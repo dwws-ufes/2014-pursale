@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Qualificações</ui:define>
+	
+	<ui:define name="style">
+		<style>
+			.wrapper{
+				height: 100%;
+			}
+			
+			td{
+				padding-right: 20px;
+			}
+			
+		</style>
+	</ui:define>
+	
+	<ui:define name="contents">
+		
+		<p:panel header="#{loginUsuario.usuario.nome}:    #{reputacaoList.reputacao} ponto(s)" style="margin-top:20px">
+		        <h:panelGrid id="grid" columns="4" cellpadding="5">
+		        
+		 			<h:outputLabel for="data_nascimento" value="Data de Nascimento:" style="font-weight:bold"/>                 
+		            <p:outputLabel id="data_nascimento" value="#{editUsuario.usuario.data_nascimento}" required="true" label="Data de Nascimento">
+		                <f:convertDateTime pattern="dd/MM/yyyy" />
+		            </p:outputLabel>
+		 			
+		 			<h:outputLabel for="cpf" value="CPF:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="cpf" value="#{editUsuario.usuario.cpf}" required="true" label="cpf"/>
+		            
+		            <h:outputLabel for="rg" value="RG:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="rg" value="#{editUsuario.usuario.identidade}" required="true" label="rg"/>
+		 			
+		 			<h:outputLabel for="email" value="Email:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="email" value="#{editUsuario.usuario.email}" required="true" label="email" maxlength="50"/>
+		 			
+		 			<h:outputLabel for="endereco" value="Endereço:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="endereco" value="#{editUsuario.usuario.endereco}" required="true" label="endereco"/>
+		            
+		            <h:outputLabel for="complemento" value="Complemento:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="complemento" value="#{editUsuario.usuario.complemento}" required="true" label="complemento"/>
+		            
+		            <h:outputLabel for="bairro" value="Bairro:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="bairro" value="#{editUsuario.usuario.bairro}" required="true" label="bairro"/>
+		            
+		            <h:outputLabel for="cidade" value="Cidade:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="cidade" value="#{editUsuario.usuario.cidade}" required="true" label="cidade"/>
+		            
+		            <h:outputLabel for="uf" value="UF:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="uf" value="#{editUsuario.usuario.uf}" required="true" label="uf"/>
+		            
+		            <h:outputLabel for="cep" value="CEP:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="cep" value="#{editUsuario.usuario.cep}" required="true" label="cep"/>
+		            
+		        </h:panelGrid>
+		    </p:panel>
+		
+		<h:form>
+			<p:dataList emptyMessage="Você ainda não possui qualificações como comprador" value="#{reputacaoList.reputacoesComprador}" var="reputacao" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" style="margin-top:20px">
+		        <f:facet name="header">
+		        	Qualificações como Comprador
+		        </f:facet>
+		       
+			    <p:link outcome="/pedidos/view" class="produto_item_lista #{reputacaoList.retornaClassQualificacao(reputacao.avaliacao)}" value="#{reputacao.pedido.produto.usuario.nome}: #{reputacao.comentario}" style="display:inline-block; text-decoration: none">
+				    <f:param name="id" value="#{reputacao.pedido.id}" />
+				    <f:param name="tipo" value="0" />
+				</p:link>
+		
+	    	</p:dataList>
+	    	
+	    	<p:dataList emptyMessage="Você ainda não possui qualificações como vendedor" value="#{reputacaoList.reputacoesVendedor}" var="reputacao" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated" style="margin-top:40px">
+		        <f:facet name="header">
+		        	Qualificações como Vendedor
+		        </f:facet>
+		       
+			    <p:link outcome="/pedidos/view" class="produto_item_lista #{reputacaoList.retornaClassQualificacao(reputacao.avaliacao)}" value="#{reputacao.pedido.produto.usuario.nome}: #{reputacao.comentario}" style="display:inline-block; text-decoration: none">
+				    <f:param name="id" value="#{reputacao.pedido.id}" />
+				    <f:param name="tipo" value="1" />
+				</p:link>
+			    
+	    	</p:dataList>
+    	</h:form>
+    			
+	</ui:define>
+</ui:composition>

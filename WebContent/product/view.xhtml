@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="style">
+		<style>
+			.new_user_form .ui-inputfield{
+				margin: 0;
+			}
+			
+		
+			.wrapper{
+				height: 100%;
+			}
+		
+		</style>
+	</ui:define>
+	
+	<ui:define name="contents">
+		
+		<h:outputText value="" />
+		
+		<h:form class="new_user_form">
+		    <p:panel header="Detalhes Produto">
+		 
+		        <h:panelGrid id="grid" columns="2" cellpadding="5">
+		        
+		            <h:outputLabel for="nome" value="Nome:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="nome" value="#{editProduto.produto.nome}" />
+		 			
+		 			<h:outputLabel for="preco" value="Preço:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="preco" value="#{editProduto.produto.preco}"/>
+		            
+		            <h:outputLabel for="titulo" value="Título:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="titulo" value="#{editProduto.produto.titulo}"/>
+		 			
+		 			<h:outputLabel for="descricao" value="Descrição:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="descricao" value="#{editProduto.produto.descricao}" />
+		            
+		            <h:outputLabel for="quantidade" value="Quantidade:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="quantidade" value="#{editProduto.produto.quantidade}" />
+		 			
+		 			<h:outputLabel value="Imagem (URI):" style="font-weight:bold"/>                    
+		            <img src="#{editProduto.produto.imagemUri}" style="widht:300px; height:300px"/>
+		           	
+	                <p:spinner id="minMax" value="#{addPedido.quantidade}" size="5" min="1" max="#{editProduto.produto.quantidade}" />
+		           	
+		           	<p:commandButton value="Comprar" style="cursor:pointer" ajax="false" action="#{addPedido.save}">
+		        		<f:setPropertyActionListener value="#{editProduto.produto}" target="#{addPedido.produto}" />
+		        	</p:commandButton>
+		           	
+		           	<input type="hidden" name="id" value="#{editProduto.id}" />        
+		        </h:panelGrid>
+		    </p:panel>
+		</h:form>       
+		
+		
+				
+	</ui:define>
+</ui:composition>

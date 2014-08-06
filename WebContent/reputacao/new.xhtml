@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Qualificar Usuário</ui:define>
+	
+	<ui:define name="style">
+		<style>
+			td{
+				padding-right:10px;
+			}
+		</style>
+	</ui:define>
+	
+	<ui:define name="contents">
+		<h:form class="new_user_form">
+			
+			<p:panel header="Dados do Pedido">
+				<h:panelGrid columns="2" cellpadding="5">
+		        	
+		        	<h:outputLabel value="Titulo:" style="font-weight:bold"/>
+		        	<h:outputLabel value="#{addReputacao.reputacao.pedido.produto.titulo}" style="font-weight:bold"/>
+		        	
+		        	<h:outputLabel value="Nome do #{addReputacao.tipo eq 0? 'Vendedor' : 'Comprador'}:" style="font-weight:bold"/>
+		        	<h:outputLabel value="#{addReputacao.tipo eq 0? addReputacao.reputacao.vendedor.nome : addReputacao.reputacao.comprador.nome}" style="font-weight:bold"/>
+		        	
+		        	<h:outputLabel value="Reputação:" style="font-weight:bold"/>
+		        	<h:outputLabel value="#{addReputacao.tipo eq 0? addReputacao.reputacao.vendedor.reputacao : addReputacao.reputacao.comprador.reputacao} ponto(s)" style="font-weight:bold"/>
+		        	
+		        </h:panelGrid>
+		    </p:panel>
+		    
+		    <p:panel header="Qualificar Usuário" style="margin-top:20px">
+		 
+		        <h:panelGrid columns="3" cellpadding="5">
+		 			
+		 			<p:outputLabel for="avaliacao" value="Qualificação:" />
+			        <p:selectOneRadio id="avaliacao" value="#{addReputacao.reputacao.avaliacao}" required="true" requiredMessage="Informe sua avaliação sobre a negociação" >
+			            <f:selectItem itemLabel="Positiva" itemValue="2" />
+			            <f:selectItem itemLabel="Neutra"   itemValue="1" />
+			            <f:selectItem itemLabel="Negativa" itemValue="0" />
+			        </p:selectOneRadio>
+			        <p:message for="avaliacao" />
+			        
+			        <h:outputLabel for="comentario" value="Comentário:" style="font-weight:bold"/>                    
+		            <p:inputText id="comentario" value="#{addReputacao.reputacao.comentario}" required="true" label="Comentario" requiredMessage="Descreva ou comente sobre sua negociação"/>
+		            <p:message for="comentario" />
+		            	            
+		        </h:panelGrid>
+		 
+		        <p:commandButton value="Qualificar" action="#{addReputacao.save}" ajax="false" icon="ui-icon-star" validateClient="true" style="margin-right:10px">
+		        	<f:param name="id" value="#{addReputacao.id}" />
+				    <f:param name="tipo" value="#{addReputacao.tipo}" />
+		        </p:commandButton>
+		        
+		    </p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

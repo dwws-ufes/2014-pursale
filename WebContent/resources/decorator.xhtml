@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="#{facesContext.externalContext.requestContextPath}/resources/stylesheets/default.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.requestContextPath}/resources/stylesheets/yahoo_reset_3_5_0.css" rel="stylesheet" type="text/css" />
+	<title>Pursale ~ <ui:insert name="title" /></title>
+	<ui:insert name="style"></ui:insert>
+	
+</h:head>
+<h:body>
+	<div class="wrapper">
+		<div class="menu">
+			<h:form >  
+			    <p:growl id="messages"/>
+			 
+			    <p:menubar rendered="#{loginUsuario.logado}">
+			 		
+			 		<p:submenu label="#{loginUsuario.usuario.nome}" icon="ui-icon-home">
+			 			<p:menuitem value="Minha Conta" url="#{menu.minhaReputacao()}"  />
+			        	<p:menuitem value="Editar Cadastro" url="#{menu.editarCadastro()}" />
+			        </p:submenu>
+			 		
+			 		<p:submenu label="Meus Produtos">
+			 			<p:menuitem value="Novo Produto" url="#{menu.novoProduto()}" />
+			 			<p:menuitem value="Produtos Ativos" url="#{menu.meusProdutos()}" />
+			 			<p:menuitem value="Produtos Pausados" url="#{menu.meusProdutosPausados()}" />
+			 		</p:submenu>
+			 		
+			 		<p:submenu label="Meus Pedidos">
+			 			<p:menuitem value="Minhas Compras" url="#{menu.minhasCompras()}" />
+			 			<p:menuitem value="Minhas Vendas" url="#{menu.minhasVendas()}" />
+			 		</p:submenu>
+			 		
+			        <p:menuitem value="Logout" action="#{loginUsuario.logout}" ajax="false" icon="ui-icon-close" />
+			 
+			        <f:facet name="options">
+			            <input class="ui-inputfield" type="text" style="margin-right:10px" name="produto" placeholder="Search"/>
+			            <p:commandButton action="/product/query.faces" ajax="false" immediate="true" update="@form"  icon="ui-icon-search" />
+			        </f:facet>
+			    </p:menubar>
+			</h:form>
+		</div>
+		
+		<div class="contents">
+			<ui:insert name="contents">Page Blank</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>

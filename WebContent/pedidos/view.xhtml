@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="style">
+		<style>
+			.wrapper{
+				height: 100%;
+			}
+		</style>
+	</ui:define>
+	
+	<ui:define name="contents">
+		
+		<h:outputText value="" />
+		
+		<h:form class="new_user_form">
+		    <p:panel header="Detalhes Produto">
+		 
+		        <h:panelGrid columns="2" cellpadding="5">
+		        
+		            <h:outputLabel for="nomeProduto" value="Nome:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="nomeProduto" value="#{pedidoView.pedido.produto.nome}" />
+		 			
+		 			<h:outputLabel for="precoUnitario" value="Preço Unitário:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="precoUnitario" value="R$#{pedidoView.pedido.produto.preco}"/>
+		            
+		            <h:outputLabel for="titulo" value="Título:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="titulo" value="#{pedidoView.pedido.produto.titulo}"/>
+		 			
+		 			<h:outputLabel for="descricao" value="Descrição:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="descricao" value="#{pedidoView.pedido.produto.descricao}" />
+		            
+		            <h:outputLabel for="quantidade" value="Quantidade:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="quantidade" value="#{pedidoView.pedido.quantidade}" />
+		            
+		            <h:outputLabel for="total" value="Total:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="total" value="R$#{pedidoView.pedido.valorTotal}" />
+		 			
+		 			<h:outputLabel value="Imagem (URI):" style="font-weight:bold"/>                    
+		            <img src="#{pedidoView.pedido.produto.imagemUri}" style="widht:300px; height:300px"/>
+		           	
+		           	<input type="hidden" name="id" value="#{pedidoView.id}" />        
+		        </h:panelGrid>
+		    </p:panel>
+		    
+		     <p:panel header="Detalhes #{pedidoView.tipo eq 0? 'Vendedor' : 'Comprador'}" style="margin-top:20px; margin-bottom:10px">
+		 
+		        <h:panelGrid columns="2" cellpadding="5">
+		        
+		            <h:outputLabel for="nome" value="Nome:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="nome" value="#{pedidoView.usuario.nome}" />
+		 			
+		 			<h:outputLabel for="email" value="Email:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="email" value="#{pedidoView.usuario.email}" />
+		            
+		            <h:outputLabel for="reputacao" value="Reputacao:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="reputacao" value="#{pedidoView.usuario.reputacao} ponto(s)" />
+		            
+		            <h:outputLabel for="endereco" value="Endereço:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="endereco" value="#{pedidoView.usuario.endereco}" />
+		            
+		            <h:outputLabel for="complemento" value="Complemento:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="complemento" value="#{pedidoView.usuario.complemento}" />
+		            
+		            <h:outputLabel for="bairro" value="Bairro:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="bairro" value="#{pedidoView.usuario.bairro}" />
+		            
+		            <h:outputLabel for="cidade" value="Cidade:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="cidade" value="#{pedidoView.usuario.cidade}" />
+		            
+		            <h:outputLabel for="uf" value="UF:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="uf" value="#{pedidoView.usuario.uf}" />
+		            
+		            <h:outputLabel for="cep" value="CEP:" style="font-weight:bold"/>                    
+		            <p:outputLabel id="cep" value="#{pedidoView.usuario.cep}" />
+
+		        </h:panelGrid>
+		    </p:panel>
+		</h:form>       
+		
+	</ui:define>
+</ui:composition>

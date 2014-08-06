@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+  
+   	  
+	<ui:define name="title">Meus Produtos</ui:define>
+	
+	<ui:define name="contents">
+		<h:form id="myForm">
+			<p:dataList id="myTable" emptyMessage="Você não possui produtos pausados." value="#{productListPaused.produtos}" var="produto" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+		        <f:facet name="header">
+		            Meus Produtos
+		        </f:facet>
+		        <p:commandLink class="produto_item_lista" update=":productDetail" oncomplete="PF('productDialog').show()">
+		        	<h:outputText value="#{produto.titulo}" class="#{produto.quantidade eq 0? 'produto_desativado' : 'produto_ativado'}"/>
+		            <f:setPropertyActionListener value="#{produto}" target="#{productListPaused.produtoSelecionado}" />
+		        </p:commandLink>    
+		            
+	            <p:growl id="message" showDetail="true" />
+	            
+	            <p:commandButton class="icon_small" action="#{productListPaused.ativaProduto(produto.id)}"  icon="ui-icon-plusthick" ajax="true"/>
+		        <p:commandButton class="icon_small" action="#{productListPaused.apagaProduto(produto.id)}" update=":myForm:myTable"  icon="ui-icon-trash">
+		        	<p:confirm header="Confirmation" message="Tem certeza que deseja excluir o produto selecionado?" icon="ui-icon-alert" />
+		        </p:commandButton>
+		        
+		        
+		         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+			        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
+		        
+		        
+	    	</p:dataList>
+    	</h:form>
+    	
+    	<p:dialog header="Detalhes" widgetVar="productDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+	        <p:outputPanel id="productDetail" style="text-align:center;">
+	            <p:panelGrid  columns="2" rendered="#{not empty productListPaused.produtoSelecionado}" columnClasses="label,value">
+	 
+	                <h:outputText value="Nome" />
+	                <h:outputText value="#{productListPaused.produtoSelecionado.nome}" />
+	 
+	                <h:outputText value="Preço:" />
+	                <h:outputText value="R$#{productListPaused.produtoSelecionado.preco}">
+	                	<f:convertNumber minFractionDigits="2" />
+	                </h:outputText>
+	 
+	                <h:outputText value="Quantidade" />
+	                <h:outputText value="#{productListPaused.produtoSelecionado.quantidade}" />
+	                
+	                <f:facet name="footer">
+	                	<form method="post" action="edit.faces">
+				            <h:panelGroup style="display:block; text-align:center">
+				               <h:commandButton id="edit" value="Editar" style="cursor:pointer" />
+				            </h:panelGroup>
+			            	<input type="hidden" name="id" value="#{productListPaused.produtoSelecionado.id}" />
+			            </form>
+			        </f:facet>
+	            </p:panelGrid>
+	        </p:outputPanel>
+	    </p:dialog>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				template="/resources/decorator.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                
+	<ui:define name="title">Welcome</ui:define>
+	
+	<ui:define name="p_title">PurSale</ui:define>
+	
+	<ui:define name="contents">
+		<div class="login_left">
+			<h:form rendered="#{!loginUsuario.logado}">
+			    <p:panel header="Faça seu login">
+			 		
+			        <h:panelGrid columns="2" cellpadding="5" >
+			            <h:outputLabel for="login" value="Login" />
+			            <p:inputText id="login" value="#{loginUsuario.usuario.login}" label="login" required="true" requiredMessage="Informe um login válido"/>
+			 
+			            <h:outputLabel for="senha" value="Senha" />
+			            <p:password id="senha" value="#{loginUsuario.usuario.senha}" label="senha" required="true" requiredMessage="Informe uma senha válida"/>
+			 
+			        </h:panelGrid>
+			 
+			        <p:commandButton value="Entrar" ajax="false" icon="ui-icon-check" validateClient="false" action="#{loginUsuario.find}"/>
+			    </p:panel>
+			</h:form>
+		</div>
+		
+		<div class="info_right">
+			<h:form rendered="#{!loginUsuario.logado}">
+			    <p:growl id="msgs" showDetail="true" />
+			 
+			    <p:panel id="basic" header="Cadastre-se" style="margin-bottom:20px">
+			            <h:outputText value="Ainda não possui cadastro?" />
+			            <br/><br/>
+			            <h:outputText value="Cadestre-se agora mesmo na Pursale e aproveite todos os benefícios!" />
+			            <br/><br/>
+			            <span><p:commandButton value="Cadastrar" id="nonAjax" action="user_registration/index.faces" ajax="false" /></span>
+			    </p:panel>    
+			</h:form>
+			
+			<h:outputText rendered="#{loginUsuario.logado}" value="Bem-vindo, " style="font-size: 20px; text-align: center;" /><b><h:outputText rendered="#{loginUsuario.logado}" value="#{loginUsuario.usuario.nome}" style="font-size: 20px; text-align: center;" /></b>
+		</div>
+	</ui:define>
+</ui:composition>
